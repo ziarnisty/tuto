@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poradnik Serwer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        button {
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.1s;
+            flex: 1;
+        }
+        button:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
+        }
+        button.secondary {
+            background-color: #334155;
+        }
+        button.secondary:hover {
+            background-color: #475569;
+        }
+        .hidden {
+            display: none;
+        }
+        .tutorial-content {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .tutorial-content ul {
+            padding-left: 20px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        .tutorial-content li {
+            margin-bottom: 10px;
+        }
+        code {
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #38bdf8;
+            font-family: monospace;
+        }
+        .back-btn {
+            margin-top: 25px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Ekran wyboru -->
+        <div id="selection-screen">
+            <h1>Czy masz konto Minecraft Premium?</h1>
+            <p>Wybierz odpowiednią opcje, aby wyświetlić odpowiednie instrukcje krok po kroku.</p>
+            <div class="btn-group">
+                <button onclick="showTutorial('premium')">Mam Premium</button>
+                <button class="secondary" onclick="showTutorial('nonpremium')">Non-Premium</button>
+            </div>
+        </div>
+
+        <!-- Tutorial Premium -->
+        <div id="tutorial-premium" class="hidden tutorial-content">
+            <h1>Poradnik dla graczy Premium</h1>
+            <p>Posiadasz oryginalną grę, co ułatwia sprawę:</p>
+            <ul>
+                <li>Uruchom oficjalny launcher Minecraft lub dowolny launcher obsługujący konta Microsoft.</li>
+                <li>Wybierz profil z wersją gry wymaganą przez serwer <strong>NeoForge 21.1.250</strong>.</li>
+                <li>Wejdź w tryb wieloosobowy, dodaj serwer i wklej jego adres IP.</li>
+                <li>Gotowe! Automatycznie połączysz się z serwerem i zachowasz swój oryginalny skin.</li>
+            </ul>
+            <button class="secondary back-btn" onclick="goBack()">← Wróć do wyboru</button>
+        </div>
+
+        <!-- Tutorial Non-Premium -->
+        <div id="tutorial-nonpremium" class="hidden tutorial-content">
+            <h1>Poradnik dla graczy Non-Premium</h1>
+            <p>Serwer działa w trybie hybrydowym z zabezpieczeniem logowania:</p>
+            <ul>
+                <li>Pobierz darmowy launcher (np. <strong>SKlauncher</strong>) i wpisz swój wybrany nick.</li>
+                <li>Uruchom dokładnie tę samą wersję modyfikacji, którą ma serwer <strong>NeoForge 21.1.250</strong>.</li>
+                <li>Dołącz do serwera przez adres IP.</li>
+                <li>Po wejściu zarejestruj się komendą na czacie: <br><code>/register TwojeHasło TwojeHasło</code></li>
+                <li>Przy kolejnych wizytach logujesz się: <br><code>/login TwojeHasło</code></li>
+            </ul>
+            <button class="secondary back-btn" onclick="goBack()">← Wróć do wyboru</button>
+        </div>
+    </div>
+
+    <script>
+        function showTutorial(type) {
+            document.getElementById('selection-screen').classList.add('hidden');
+            if (type === 'premium') {
+                document.getElementById('tutorial-premium').classList.remove('hidden');
+            } else {
+                document.getElementById('tutorial-nonpremium').classList.remove('hidden');
+            }
+        }
+
+        function goBack() {
+            document.getElementById('tutorial-premium').classList.add('hidden');
+            document.getElementById('tutorial-nonpremium').classList.add('hidden');
+            document.getElementById('selection-screen').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
