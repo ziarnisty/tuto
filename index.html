@@ -3,103 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poradnik Serwer</title>
+    <title>Poradnik Serwer i Paczka Modów</title>
+    <!-- Nowoczesna czcionka Inter z Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --mc-green: #22c55e;
+            --nf-orange: #f97316;
+            --alert-red: #ef4444;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.65);
+            --primary-blue: #0ea5e9;
+            --primary-hover: #0284c7;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e293b, var(--bg-dark) 70%);
             color: #f8fafc;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-        }
-        .card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
+            padding: 40px 20px;
             box-sizing: border-box;
         }
+
+        /* OSTRZEŻENIE NA GÓRZE */
+        .warning-banner {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+        }
+
+        .top-warning {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top-warning .nf {
+            color: var(--nf-orange);
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+        }
+
+        .top-warning .not-equal {
+            color: var(--alert-red);
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        .top-warning .fg {
+            color: #94a3b8;
+            text-decoration: line-through;
+            text-decoration-color: var(--alert-red);
+            text-decoration-thickness: 5px;
+            opacity: 0.8;
+        }
+
+        .top-sub-warning {
+            color: #f1f5f9;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0;
+            background: rgba(239, 68, 68, 0.2);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.15);
+        }
+
+        /* Główne okno (karta) */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-sizing: border-box;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
+        }
+
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
+            margin-top: 0;
             margin-bottom: 15px;
             color: #38bdf8;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
+
         p {
             color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
+
         .btn-group {
             display: flex;
             gap: 15px;
             justify-content: center;
         }
+
         button {
-            background-color: #0ea5e9;
+            background: linear-gradient(135deg, var(--primary-blue), #2563eb);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 14px 24px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: background 0.2s, transform 0.1s;
+            font-size: 1rem;
+            transition: all 0.2s ease;
             flex: 1;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
         }
+
         button:hover {
-            background-color: #0284c7;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.5);
+            filter: brightness(1.1);
         }
+
         button.secondary {
-            background-color: #334155;
+            background: #334155;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+
         button.secondary:hover {
-            background-color: #475569;
+            background: #475569;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
+
         .hidden {
-            display: none;
+            display: none !important;
         }
+
+        /* Animacja przełączania treści */
         .tutorial-content {
             text-align: left;
             margin-top: 10px;
+            animation: fadeIn 0.4s ease forwards;
         }
+
+        .tutorial-content p {
+            margin-bottom: 20px;
+        }
+
         .tutorial-content ul {
             padding-left: 20px;
             color: #cbd5e1;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
+
         .tutorial-content li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
+
+        .tutorial-content li::marker {
+            color: #38bdf8;
+        }
+
         code {
-            background: #1e293b;
-            padding: 2px 6px;
-            border-radius: 4px;
+            background: #0f172a;
+            padding: 4px 8px;
+            border-radius: 6px;
             color: #38bdf8;
             font-family: monospace;
+            font-size: 0.9rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            display: inline-block;
+            margin-top: 4px;
         }
+
         .back-btn {
-            margin-top: 25px;
+            margin-top: 30px;
             width: 100%;
+        }
+
+        /* STREFA STATYCZNA NA DOLE (POWIĘKSZONA) */
+        .footer-zone {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .versions-box {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 22px 45px; /* Zwiększony padding (rozmiar pudełka) */
+            border-radius: 60px;
+            font-size: 1.25rem; /* Powiększona czcionka bazowa */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Zwiększony odstęp między tekstami */
+            flex-wrap: wrap;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+        }
+
+        .mc-text {
+            color: var(--mc-green);
+            text-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+            font-size: 1.35rem; /* Jeszcze większy tekst dla wersji */
+        }
+
+        .nf-text {
+            color: var(--nf-orange);
+            text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+            font-size: 1.35rem; /* Jeszcze większy tekst dla wersji */
+        }
+
+        .divider {
+            color: #475569;
+            font-size: 1.5rem;
+        }
+
+        .alert-text {
+            color: var(--alert-red);
+            font-weight: 900;
+            font-size: 1.2rem; /* Powiększony napis "WAŻNE!" */
+            text-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+            animation: pulseAlert 2s infinite;
+            background: rgba(239, 68, 68, 0.15);
+            padding: 6px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+        }
+
+        /* Przycisk Pobierania Paczki */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.5);
+            background: linear-gradient(135deg, #fb923c, #f97316);
+        }
+
+        .download-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: bounceDown 2s infinite;
+        }
+
+        /* Tło - dekoracyjne kule */
+        .bg-shape {
+            position: fixed;
+            filter: blur(120px);
+            z-index: 1;
+            border-radius: 50%;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .shape-1 {
+            width: 400px; height: 400px;
+            background: var(--primary-blue);
+            top: -100px; left: -100px;
+        }
+        .shape-2 {
+            width: 500px; height: 500px;
+            background: var(--nf-orange);
+            bottom: -200px; right: -200px;
+            opacity: 0.15;
+        }
+
+        /* Animacje Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseAlert {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.9; box-shadow: 0 0 20px rgba(239, 68, 68, 0.7); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(5px); }
+            60% { transform: translateY(3px); }
+        }
+
+        /* Responsywność dla telefonów */
+        @media (max-width: 768px) {
+            .top-warning { font-size: 2.2rem; }
+            .top-warning .not-equal { font-size: 2.5rem; }
+            .top-sub-warning { font-size: 0.95rem; padding: 10px 18px; }
+            
+            .versions-box { 
+                flex-direction: column; 
+                text-align: center; 
+                border-radius: 20px; 
+                gap: 12px;
+                padding: 20px;
+            }
+            .divider { display: none; }
+            .alert-text { margin-left: 0; margin-top: 5px; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Dekoracyjne rozmyte kształty w tle -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- NOWY WIELKI BANNER NA GÓRZE -->
+    <div class="warning-banner">
+        <h2 class="top-warning">
+            <span class="nf">NeoForge</span> 
+            <span class="not-equal">≠</span> 
+            <span class="fg">Forge</span>
+        </h2>
+        <p class="top-sub-warning">(NeoForge i Forge to nie to samo, musisz zainstalować NeoForge)</p>
+    </div>
+
     <div class="card">
         <!-- Ekran wyboru -->
         <div id="selection-screen">
-            <h1>Czy masz konto Minecraft Premium?</h1>
-            <p>Wybierz odpowiednią opcje, aby wyświetlić odpowiednie instrukcje krok po kroku.</p>
+            <h1>Tutaj jeszcze tutorial nie dokończony jak coś xd ale można już pobierać paczkę</h1>
+            <p>Wybierz odpowiednią opcję, aby wyświetlić instrukcję logowania na serwer krok po kroku.</p>
             <div class="btn-group">
                 <button onclick="showTutorial('premium')">Mam Premium</button>
                 <button class="secondary" onclick="showTutorial('nonpremium')">Non-Premium</button>
@@ -109,10 +390,10 @@
         <!-- Tutorial Premium -->
         <div id="tutorial-premium" class="hidden tutorial-content">
             <h1>Poradnik dla graczy Premium</h1>
-            <p>Posiadasz oryginalną grę, co ułatwia sprawę:</p>
+            <p>Posiadasz oryginalną grę, co znacznie ułatwia sprawę:</p>
             <ul>
                 <li>Uruchom oficjalny launcher Minecraft lub dowolny launcher obsługujący konta Microsoft.</li>
-                <li>Wybierz profil z wersją gry wymaganą przez serwer <strong>NeoForge 21.1.250</strong>.</li>
+                <li>Wybierz profil z wersją gry wymaganą przez serwer <strong>NeoForge 21.1.248</strong>.</li>
                 <li>Wejdź w tryb wieloosobowy, dodaj serwer i wklej jego adres IP.</li>
                 <li>Gotowe! Automatycznie połączysz się z serwerem i zachowasz swój oryginalny skin.</li>
             </ul>
@@ -122,16 +403,36 @@
         <!-- Tutorial Non-Premium -->
         <div id="tutorial-nonpremium" class="hidden tutorial-content">
             <h1>Poradnik dla graczy Non-Premium</h1>
-            <p>Serwer działa w trybie hybrydowym z zabezpieczeniem logowania:</p>
+            <p>Serwer działa w trybie hybrydowym z bezpiecznym systemem logowania:</p>
             <ul>
                 <li>Pobierz darmowy launcher (np. <strong>SKlauncher</strong>) i wpisz swój wybrany nick.</li>
-                <li>Uruchom dokładnie tę samą wersję modyfikacji, którą ma serwer <strong>NeoForge 21.1.250</strong>.</li>
-                <li>Dołącz do serwera przez adres IP.</li>
+                <li>Uruchom dokładnie tę samą wersję modyfikacji, którą ma serwer <strong>NeoForge 21.1.248</strong>.</li>
+                <li>Dołącz do serwera wpisując jego adres IP.</li>
                 <li>Po wejściu zarejestruj się komendą na czacie: <br><code>/register TwojeHasło TwojeHasło</code></li>
                 <li>Przy kolejnych wizytach logujesz się: <br><code>/login TwojeHasło</code></li>
             </ul>
             <button class="secondary back-btn" onclick="goBack()">← Wróć do wyboru</button>
         </div>
+    </div>
+
+    <!-- Zawsze widoczna stopka ze statusem i pobieraniem (POWIĘKSZONA) -->
+    <div class="footer-zone">
+        <div class="versions-box">
+            <span class="mc-text">Wersja Minecraft: 1.21.1</span>
+            <span class="divider">|</span>
+            <span class="nf-text">Wersja NeoForge 21.1.248</span>
+            <span class="alert-text">WAŻNE!</span>
+        </div>
+        
+        <!-- Link otwierający się w nowej karcie -->
+        <a href="https://drive.google.com/file/d/1z_ZGcRnm3t5MaMDY1ys9XibKbSzoqFGg/view?usp=sharing" class="download-btn" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Pobierz Paczkę Modów
+        </a>
     </div>
 
     <script>
