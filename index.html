@@ -95,7 +95,6 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
             width: 100%;
             max-width: 550px;
-            text-align: center;
             box-sizing: border-box;
             animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -105,7 +104,7 @@
         h1 {
             font-size: 1.6rem;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #38bdf8;
             font-weight: 800;
             letter-spacing: -0.5px;
@@ -118,12 +117,6 @@
             margin-bottom: 30px;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
         button {
             background: linear-gradient(135deg, var(--primary-blue), #2563eb);
             color: white;
@@ -134,7 +127,6 @@
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.2s ease;
-            flex: 1;
             box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
         }
 
@@ -158,32 +150,6 @@
             display: none !important;
         }
 
-        /* Animacja przełączania treści */
-        .tutorial-content {
-            text-align: left;
-            margin-top: 10px;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .tutorial-content p {
-            margin-bottom: 20px;
-        }
-
-        .tutorial-content ul {
-            padding-left: 20px;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .tutorial-content li {
-            margin-bottom: 12px;
-        }
-
-        .tutorial-content li::marker {
-            color: #38bdf8;
-        }
-
         code {
             background: #0f172a;
             padding: 4px 8px;
@@ -196,12 +162,66 @@
             margin-top: 4px;
         }
 
-        .back-btn {
-            margin-top: 30px;
-            width: 100%;
+        /* =========================================
+           STYLE DLA NOWEGO WIZARDA KROKÓW
+           ========================================= */
+        
+        .wizard-step {
+            animation: fadeIn 0.4s ease forwards;
+            text-align: left;
         }
 
-        /* STREFA STATYCZNA NA DOLE (POWIĘKSZONA) */
+        #step-1 {
+            text-align: center;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .option-btn {
+            flex: 1;
+            border: 2px solid transparent;
+        }
+
+        .option-btn.active {
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #0ea5e9, #1e40af);
+        }
+
+        .step-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            flex: 0 1 auto;
+            padding: 12px 28px;
+        }
+
+        #wizard-next {
+            margin-left: auto;
+        }
+
+        /* STREFA STATYCZNA NA DOLE */
         .footer-zone {
             margin-top: 50px;
             display: flex;
@@ -217,40 +237,26 @@
         .versions-box {
             background: rgba(15, 23, 42, 0.8);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 22px 45px; /* Zwiększony padding (rozmiar pudełka) */
+            padding: 10px 20px;
             border-radius: 60px;
-            font-size: 1.25rem; /* Powiększona czcionka bazowa */
+            font-size: 1.25rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 20px; /* Zwiększony odstęp między tekstami */
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(12px);
         }
 
-        .mc-text {
-            color: var(--mc-green);
-            text-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
-            font-size: 1.35rem; /* Jeszcze większy tekst dla wersji */
-        }
-
-        .nf-text {
-            color: var(--nf-orange);
-            text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
-            font-size: 1.35rem; /* Jeszcze większy tekst dla wersji */
-        }
-
-        .divider {
-            color: #475569;
-            font-size: 1.5rem;
-        }
-
+        .mc-text { color: var(--mc-green); text-shadow: 0 0 12px rgba(34, 197, 94, 0.4); font-size: 1.35rem; }
+        .nf-text { color: var(--nf-orange); text-shadow: 0 0 12px rgba(249, 115, 22, 0.4); font-size: 1.35rem; }
+        .divider { color: #475569; font-size: 1.5rem; }
         .alert-text {
             color: var(--alert-red);
             font-weight: 900;
-            font-size: 1.2rem; /* Powiększony napis "WAŻNE!" */
+            font-size: 1.2rem;
             text-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
             animation: pulseAlert 2s infinite;
             background: rgba(239, 68, 68, 0.15);
@@ -260,7 +266,6 @@
             margin-left: 10px;
         }
 
-        /* Przycisk Pobierania Paczki */
         .download-btn {
             display: flex;
             align-items: center;
@@ -286,87 +291,152 @@
         }
 
         .download-btn svg {
-            width: 26px;
-            height: 26px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            animation: bounceDown 2s infinite;
+            width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round; animation: bounceDown 2s infinite;
         }
 
-        /* Tło - dekoracyjne kule */
         .bg-shape {
+            position: fixed; filter: blur(120px); z-index: 1; border-radius: 50%;
+            opacity: 0.4; pointer-events: none;
+        }
+        .shape-1 { width: 400px; height: 400px; background: var(--primary-blue); top: -100px; left: -100px; }
+        .shape-2 { width: 500px; height: 500px; background: var(--nf-orange); bottom: -200px; right: -200px; opacity: 0.15; }
+
+        .inline-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mc-green), #16a34a);
+            color: white !important;
+            text-decoration: none;
+            padding: 4px 14px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin: 0 4px;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .inline-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(34, 197, 94, 0.5);
+            color: white;
+        }
+
+        .text-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px dashed rgba(14, 165, 233, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .text-link:hover {
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .image-caption {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* =========================================
+           WIDGET IP (TIMER ODLCZANIA)
+           ========================================= */
+        .ip-widget {
             position: fixed;
-            filter: blur(120px);
-            z-index: 1;
-            border-radius: 50%;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        .shape-1 {
-            width: 400px; height: 400px;
-            background: var(--primary-blue);
-            top: -100px; left: -100px;
-        }
-        .shape-2 {
-            width: 500px; height: 500px;
-            background: var(--nf-orange);
-            bottom: -200px; right: -200px;
-            opacity: 0.15;
+            top: 40px;
+            right: 40px;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 25px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            z-index: 100;
+            min-width: 240px;
+            animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Animacje Keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseAlert {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.08); opacity: 0.9; box-shadow: 0 0 20px rgba(239, 68, 68, 0.7); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes bounceDown {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(5px); }
-            60% { transform: translateY(3px); }
+        .ip-widget h3 {
+            margin-top: 0;
+            color: #38bdf8;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
         }
 
-        /* Responsywność dla telefonów */
-        @media (max-width: 768px) {
+        .ip-widget p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .countdown-time {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--nf-orange);
+            font-variant-numeric: tabular-nums;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+        }
+
+        .revealed-ip {
+            display: none; /* Domyślnie ukryte, JavaScript to zmieni */
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--mc-green);
+            background: rgba(34, 197, 94, 0.15);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px dashed var(--mc-green);
+            margin-top: 15px;
+            user-select: all;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 1200px) {
+            .ip-widget {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 0;
+                margin-bottom: 30px;
+                width: 100%;
+                max-width: 550px;
+                animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
             .top-warning { font-size: 2.2rem; }
             .top-warning .not-equal { font-size: 2.5rem; }
             .top-sub-warning { font-size: 0.95rem; padding: 10px 18px; }
-            
-            .versions-box { 
-                flex-direction: column; 
-                text-align: center; 
-                border-radius: 20px; 
-                gap: 12px;
-                padding: 20px;
-            }
+            .versions-box { flex-direction: column; text-align: center; border-radius: 20px; gap: 12px; padding: 20px; }
             .divider { display: none; }
             .alert-text { margin-left: 0; margin-top: 5px; }
-            .btn-group { flex-direction: column; }
+            .option-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Dekoracyjne rozmyte kształty w tle -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
-    <!-- NOWY WIELKI BANNER NA GÓRZE -->
     <div class="warning-banner">
         <h2 class="top-warning">
             <span class="nf">NeoForge</span> 
@@ -376,46 +446,86 @@
         <p class="top-sub-warning">(NeoForge i Forge to nie to samo, musisz zainstalować NeoForge)</p>
     </div>
 
+    <!-- PŁYWAJĄCY WIDGET Z ODLICZANIEM DO IP -->
+    <div class="ip-widget">
+        <h3>IP DO SERWERA</h3>
+        <p id="text-dostepne-za">ip dostępne za:</p>
+        <div id="timer-countdown" class="countdown-time">00:00</div>
+        <div id="server-ip-reveal" class="revealed-ip"></div>
+    </div>
+
     <div class="card">
-        <!-- Ekran wyboru -->
-        <div id="selection-screen">
-            <h1>Tutaj jeszcze tutorial nie dokończony jak coś xd ale można już pobierać paczkę</h1>
-            <p>Wybierz odpowiednią opcję, aby wyświetlić instrukcję dołączenia na serwer krok po kroku.</p>
-            <div class="btn-group">
-                <button onclick="showTutorial('premium')">Mam Premium</button>
-                <button class="secondary" onclick="showTutorial('nonpremium')">Non-Premium</button>
+        
+        <!-- ========================================== -->
+        <!-- KROK 1: WSPÓLNY WYBÓR -->
+        <!-- ========================================== -->
+        <div id="step-1" class="wizard-step">
+            <h1>Czy posiadasz Minecraft Premium?</h1>
+            <p>(Zakupione oficjalne konto Minecraft)</p>
+            <div class="option-group">
+                <button id="btn-prem" class="option-btn secondary" onclick="selectPath('premium')">Mam Premium</button>
+                <button id="btn-nonprem" class="option-btn secondary" onclick="selectPath('nonpremium')">Nie mam premium</button>
             </div>
         </div>
 
-        <!-- Tutorial Premium -->
-        <div id="tutorial-premium" class="hidden tutorial-content">
-            <h1>Poradnik dla graczy Premium</h1>
-            <p>Posiadasz oryginalną grę, co znacznie ułatwia sprawę:</p>
-            <ul>
-                <li>Uruchom oficjalny launcher Minecraft lub dowolny launcher obsługujący konta Microsoft.</li>
-                <li>Wybierz profil z wersją gry wymaganą przez serwer <strong>NeoForge 21.1.248</strong>.</li>
-                <li>Wejdź w tryb wieloosobowy, dodaj serwer i wklej jego adres IP.</li>
-                <li>Gotowe! Automatycznie połączysz się z serwerem i zachowasz swój oryginalny skin.</li>
-            </ul>
-            <button class="secondary back-btn" onclick="goBack()">← Wróć do wyboru</button>
+
+        <!-- ========================================== -->
+        <!-- SEKCJA STRON DLA GRACZY PREMIUM -->
+        <!-- ========================================== -->
+        
+        <div id="premium-1" class="wizard-step hidden">
+            <h1>Premium: Krok 1</h1>
+            <!-- Tutaj podmieniasz link w src="" na swój obrazek -->
+            <img src="https://via.placeholder.com/600x300/1e293b/38bdf8?text=Wstaw+Zdjecie+Launchera" alt="Krok 1" class="step-image">
+            <p>Uruchom oficjalny launcher Minecraft lub dowolny launcher obsługujący konta Microsoft. Wybierz profil z wersją gry wymaganą przez serwer <strong>NeoForge 21.1.248</strong>.</p>
         </div>
 
-        <!-- Tutorial Non-Premium -->
-        <div id="tutorial-nonpremium" class="hidden tutorial-content">
-            <h1>Poradnik dla graczy Non-Premium</h1>
-            <p>Serwer działa w trybie hybrydowym z bezpiecznym systemem logowania:</p>
-            <ul>
-                <li>Pobierz darmowy launcher (np. <strong>SKlauncher</strong>) i wpisz swój wybrany nick.</li>
-                <li>Uruchom dokładnie tę samą wersję modyfikacji, którą ma serwer <strong>NeoForge 21.1.248</strong>.</li>
-                <li>Dołącz do serwera wpisując jego adres IP.</li>
-                <li>Po wejściu zarejestruj się komendą na czacie: <br><code>/register TwojeHasło TwojeHasło</code></li>
-                <li>Przy kolejnych wizytach logujesz się: <br><code>/login TwojeHasło</code></li>
-            </ul>
-            <button class="secondary back-btn" onclick="goBack()">← Wróć do wyboru</button>
+        <div id="premium-2" class="wizard-step hidden">
+            <h1>Premium: Krok 2</h1>
+            <img src="https://via.placeholder.com/600x300/1e293b/38bdf8?text=Wstaw+Zdjecie+Adresu+Serwera" alt="Krok 2" class="step-image">
+            <p>Wejdź w tryb wieloosobowy, dodaj serwer i wklej jego adres IP. Gotowe! Automatycznie połączysz się z serwerem i zachowasz swój oryginalny skin.</p>
         </div>
+
+
+        <!-- ========================================== -->
+        <!-- SEKCJA STRON DLA GRACZY NON-PREMIUM -->
+        <!-- ========================================== -->
+        
+        <div id="nonpremium-1" class="wizard-step hidden">
+            <h1>Non-Premium: Krok 1</h1>
+            <p>
+                Pobierz darmowy launcher, ja proponuję <strong>SKlauncher</strong>, który możesz pobrać bezpośrednio klikając 
+                <a href="https://skmedix.pl/downloads" class="inline-btn" target="_blank" rel="noopener noreferrer">TUTAJ</a>, 
+                bądź przejść na oficjalną stronę, która jest pod linkiem 
+                <a href="https://skmedix.pl/" class="text-link" target="_blank" rel="noopener noreferrer">https://skmedix.pl/</a>.
+            </p>
+            <img src="np1.png" alt="Krok 1" class="step-image" style="margin-top: 30px; margin-bottom: -8px;">
+            <p class="image-caption">Aby pobrać trzeba chwilę poczekać na stronie SKLaunchera i kliknąć dokładnie ten przycisk na który wskazują strzałki (ten niebiesko fioletowy).</p>
+        </div>
+
+        <div id="nonpremium-2" class="wizard-step hidden">
+            <h1>Non-Premium: Krok 2</h1>
+            <img src="https://via.placeholder.com/600x300/1e293b/f97316?text=Wstaw+Zdjecie+Rejestracji" alt="Krok 2" class="step-image">
+            <p>Rozpocznie się pobieranie pliku SKlauncher.exe</p>
+        </div>
+
+        <div id="nonpremium-3" class="wizard-step hidden">
+            <h1>Non-Premium: Krok 3</h1>
+            <img src="https://via.placeholder.com/600x300/1e293b/f97316?text=Wstaw+Zdjecie+Rejestracji" alt="Krok 3" class="step-image">
+            <p>Po wejściu na serwer musisz się zarejestrować. Wpisz na czacie:<br><br><code>/register TwojeHasło TwojeHasło</code><br><br>Przy każdej kolejnej wizycie wpisuj tylko <code>/login TwojeHasło</code>.</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- DOLNY PASEK NAWIGACJI (ZAWSZE WIDOCZNY) -->
+        <!-- ========================================== -->
+        <div class="wizard-nav">
+            <button id="wizard-back" class="secondary nav-btn" onclick="goBack()" style="visibility: hidden;">Wstecz</button>
+            <button id="wizard-next" class="nav-btn" onclick="goNext()">Dalej</button>
+        </div>
+
     </div>
 
-    <!-- Zawsze widoczna stopka ze statusem i pobieraniem (POWIĘKSZONA) -->
+    <!-- STREFA POBIERANIA -->
     <div class="footer-zone">
         <div class="versions-box">
             <span class="mc-text">Wersja Minecraft: 1.21.1</span>
@@ -424,7 +534,6 @@
             <span class="alert-text">WAŻNE!</span>
         </div>
         
-        <!-- Link otwierający się w nowej karcie -->
         <a href="https://drive.google.com/file/d/1z_ZGcRnm3t5MaMDY1ys9XibKbSzoqFGg/view?usp=sharing" class="download-btn" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -435,21 +544,139 @@
         </a>
     </div>
 
+    <!-- LOGIKA WIZARDA I TIMERA -->
     <script>
-        function showTutorial(type) {
-            document.getElementById('selection-screen').classList.add('hidden');
-            if (type === 'premium') {
-                document.getElementById('tutorial-premium').classList.remove('hidden');
-            } else {
-                document.getElementById('tutorial-nonpremium').classList.remove('hidden');
+        // ==========================================
+        // SKRYPT WIZARDA KROKÓW
+        // ==========================================
+        let selectedPath = null;
+        let currentIndex = 0;
+        let currentSequence = [];
+
+        const premiumSteps = ['step-1', 'premium-1', 'premium-2']; 
+        const nonpremiumSteps = ['step-1', 'nonpremium-1', 'nonpremium-2', 'nonpremium-3'];
+
+        function selectPath(path) {
+            selectedPath = path;
+            document.getElementById('btn-prem').classList.toggle('active', path === 'premium');
+            document.getElementById('btn-nonprem').classList.toggle('active', path === 'nonpremium');
+        }
+
+        function goNext() {
+            if (currentIndex === 0) {
+                if (!selectedPath) {
+                    alert("Wybierz jedną z opcji przed przejściem dalej!");
+                    return;
+                }
+                currentSequence = selectedPath === 'premium' ? premiumSteps : nonpremiumSteps;
+            }
+            
+            if (currentIndex < currentSequence.length - 1) {
+                document.getElementById(currentSequence[currentIndex]).classList.add('hidden');
+                currentIndex++;
+                document.getElementById(currentSequence[currentIndex]).classList.remove('hidden');
+                updateNav();
             }
         }
 
         function goBack() {
-            document.getElementById('tutorial-premium').classList.add('hidden');
-            document.getElementById('tutorial-nonpremium').classList.add('hidden');
-            document.getElementById('selection-screen').classList.remove('hidden');
+            if (currentIndex > 0) {
+                document.getElementById(currentSequence[currentIndex]).classList.add('hidden');
+                currentIndex--;
+                document.getElementById(currentSequence[currentIndex]).classList.remove('hidden');
+                updateNav();
+            }
         }
+
+        function updateNav() {
+            const btnBack = document.getElementById('wizard-back');
+            const btnNext = document.getElementById('wizard-next');
+            
+            if (currentIndex === 0) {
+                btnBack.style.visibility = 'hidden';
+            } else {
+                btnBack.style.visibility = 'visible';
+            }
+            
+            if (currentIndex === currentSequence.length - 1) {
+                btnNext.style.display = 'none'; 
+            } else {
+                btnNext.style.display = 'block';
+                btnNext.innerText = "Dalej";
+            }
+        }
+
+        // ==========================================
+        // SKRYPT ODLICZANIA DO IP I KOPIOWANIA
+        // ==========================================
+        function updateTimer() {
+            const now = new Date();
+            
+            // Ustawienie celu na dzisiaj na godzinę 17:00:00
+            const target = new Date();
+            target.setHours(17, 0, 0, 0);
+
+            const diff = target - now;
+            
+            const timerContainer = document.getElementById('timer-countdown');
+            const ipContainer = document.getElementById('server-ip-reveal');
+            const textZa = document.getElementById('text-dostepne-za');
+
+            // Jeśli minęła już 17:00 (lub jest równo 17:00)
+            if (diff <= 0) {
+                timerContainer.style.display = 'none';
+                textZa.style.display = 'none';
+                
+                ipContainer.style.display = 'block';
+                
+                // Odkodowanie IP (Base64 -> Odwrócenie ciągu)
+                const hiddenData = "NDExLjg0LjA4MS44NTE=";
+                const realIp = atob(hiddenData).split('').reverse().join('');
+                
+                ipContainer.innerText = realIp;
+                ipContainer.title = "Kliknij, aby skopiować IP";
+                
+                // Automatyczne kopiowanie po kliknięciu
+                ipContainer.onclick = function() {
+                    navigator.clipboard.writeText(realIp).then(function() {
+                        // Wizualne potwierdzenie skopiowania
+                        ipContainer.innerText = "Skopiowano!";
+                        ipContainer.style.backgroundColor = "rgba(34, 197, 94, 0.4)";
+                        
+                        // Powrót do wyświetlania IP po 1.5 sekundy
+                        setTimeout(function() {
+                            ipContainer.innerText = realIp;
+                            ipContainer.style.backgroundColor = "rgba(34, 197, 94, 0.15)";
+                        }, 1500);
+                    });
+                };
+                
+                // Zatrzymanie interwału odświeżania
+                if (window.ipTimerInterval) {
+                    clearInterval(window.ipTimerInterval);
+                }
+            } else {
+                // Obliczanie godzin, minut i sekund
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                let timeString = "";
+                // Pokazuj godziny tylko jeśli zostały
+                if (h > 0) timeString += h + "h ";
+                
+                timeString += m.toString().padStart(2, '0') + "m ";
+                timeString += s.toString().padStart(2, '0') + "s";
+                
+                timerContainer.innerText = timeString;
+            }
+        }
+
+        // Uruchomienie odliczania (aktualizacja co 1 sekundę)
+        window.ipTimerInterval = setInterval(updateTimer, 1000);
+        
+        // Natychmiastowe pojedyncze wywołanie
+        updateTimer();
     </script>
 </body>
 </html>
